@@ -12,7 +12,7 @@ public class Model {
     @Column(unique = true, name = "year")
     private int year;
     
-    @ID
+    @Id
     @Column(name = "model_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int modelID;
