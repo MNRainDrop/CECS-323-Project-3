@@ -6,6 +6,9 @@ import model.*;
 public class App {
     private static void test(){
         System.out.println("Hello World");
+
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("museumDb");
+        EntityManager em = factory.createEntityManager();
     }
 
     public static void main(String[] args) throws Exception {

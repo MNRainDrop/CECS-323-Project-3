@@ -3,6 +3,7 @@ package model;
 public class Trim {
     private String name;
     private float cost;
+    
     public String getName() {
         return name;
     }
