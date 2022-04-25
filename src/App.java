@@ -7,7 +7,7 @@ public class App {
     private static void test(){
         System.out.println("Hello World");
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("museumDb");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
         EntityManager em = factory.createEntityManager();
     }
 
