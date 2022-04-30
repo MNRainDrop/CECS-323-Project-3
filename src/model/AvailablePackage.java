@@ -1,13 +1,13 @@
 package model;
 
 public class AvailablePackage {
-    private float cost;
+    private static float cost;
 
-    public float getCost() {
+    public static float getCost() {
         return cost;
     }
 
     public void setCost(float cost) {
-        this.cost = cost;
+        AvailablePackage.cost = cost;
     }
 }
