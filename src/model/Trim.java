@@ -18,14 +18,15 @@ public class Trim {
     private float cost;
     
     //Foreign Key with Model
-    //Many to One
+    //Many to One, Bidirectional
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
 
     //Parent Key of Trim to Automobile
-    //One to Many
-    @OneToMany(mappedBy = "trim")
+    //One to Many, Unidirectional
+    @OneToMany
+    @JoinColumn(name="automobile_id")
     private List<Automobile> automobiles;
 
     public String getName()
@@ -45,5 +46,5 @@ public class Trim {
     public void setCost(float cost) {
         this.cost = cost;
     }
-    
+
 }
