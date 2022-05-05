@@ -8,13 +8,13 @@ public class AvailablePackage
     @Column(name="cost")
     private float cost;
 
-    @JoinColumn(name="package_id")
     @ManyToOne
-    private Package packages;
-
     @JoinColumn(name="trim_id")
+    private Trim trimID;
+
     @ManyToOne
-    private Trim trims;
+    @JoinColumn(name="package_id")
+    private Package packageID;
 
     @Id
     @Column(name = "available_id")
