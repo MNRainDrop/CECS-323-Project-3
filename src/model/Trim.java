@@ -23,12 +23,6 @@ public class Trim {
     @JoinColumn(name = "model_id")
     private Model model;
 
-    //Parent Key of Trim to Automobile
-    //One to Many, Unidirectional
-    @OneToMany
-    @JoinColumn(name="automobile_id")
-    private List<Automobile> automobiles;
-
     public String getName()
     {
         return name;
