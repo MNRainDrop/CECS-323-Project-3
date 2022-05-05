@@ -11,6 +11,8 @@ public class App
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
         EntityManager em = factory.createEntityManager();
+        System.out.println("done");
+        System.exit(0);
     }
 
     public static void main(String[] args) throws Exception 

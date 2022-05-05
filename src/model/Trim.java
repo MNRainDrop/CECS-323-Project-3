@@ -3,7 +3,7 @@ package model;
 public class Trim 
 {
     private String name;
-    private static float cost;
+    private float cost;
     
     public String getName() 
     {
@@ -13,6 +13,7 @@ public class Trim
     {
         this.name = name;
     }
+<<<<<<< HEAD
     public static float getCost() 
     {
         return cost;
@@ -20,5 +21,12 @@ public class Trim
     public void setCost(float cost) 
     {
         Trim.cost = cost;
+=======
+    public float getCost() {
+        return cost;
+    }
+    public void setCost(float cost) {
+        this.cost = cost;
+>>>>>>> 0aa38fb6cc2eca8c0bd7db02848a7e54be4b559a
     }
 }

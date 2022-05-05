@@ -24,7 +24,8 @@ public class Automobile
 
     public double stickerPrice()
     {
-        double total = AvailablePackage.getCost() + Trim.getCost(); //not sure what I am doing ):
-        return total; 
+        //double total = AvailablePackage.getCost() + Trim.getCost(); //not sure what I am doing ):
+        //return total;
+        return 0; 
     }
 }
