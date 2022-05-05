@@ -1,6 +1,5 @@
 package model;
 
-import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="trims")
