@@ -3,6 +3,9 @@ import java.util.*;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 @Entity(name = "automobiles")
 public class Automobile 
@@ -18,6 +21,21 @@ public class Automobile
     public void setVin(String vin) 
     {
         this.vin = vin;
+    }
+
+    @Id
+    @Column(name = "auto_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int autoID;
+    
+    public int getAutoID() 
+    {
+        return autoID;
+    }
+    
+    public void setAutoID(int autoID) 
+    {
+        this.autoID = autoID;
     }
 
     public Set<Feature> getFeatures()
