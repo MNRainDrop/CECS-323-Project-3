@@ -3,8 +3,10 @@ import java.util.Scanner;
 
 import jakarta.persistence.*;
 import model.*;
-public class App {
-    private static void test(){
+public class App 
+{
+    private static void test()
+    {
         System.out.println("Hello World");
 
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
@@ -13,7 +15,8 @@ public class App {
         System.exit(0);
     }
 
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws Exception 
+    {
         test();
     }
 }
