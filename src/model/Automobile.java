@@ -19,16 +19,22 @@ public class Automobile
         this.vin = vin;
     }
 
+    // primary key 
     @Id
     @Column(name = "auto_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int autoID;
+
+    //Foreign key with trim
+    @ManyToOne
+    @JoinColumn(name = "trim_id" )
+    private Trim trim;
     
     public int getAutoID() 
     {
         return autoID;
     }
-    
+
     public void setAutoID(int autoID) 
     {
         this.autoID = autoID;
