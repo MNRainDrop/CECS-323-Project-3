@@ -1,5 +1,6 @@
 package model;
 
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="trims")
@@ -21,6 +22,11 @@ public class Trim {
     @ManyToOne
     @JoinColumn(name = "model_id")
     private Model model;
+
+    //Parent Key of Automobile
+    //One to Many
+    @OneToMany(mappedBy = "trim")
+    private List<Automobile> automobiles;
 
     public String getName() {
         return name;
