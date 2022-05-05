@@ -2,6 +2,7 @@ package model;
 
 import jakarta.persistence.*;
 
+@Entity(name="packages")
 public class Package 
 {
     @Column(length = 100, name = "name")
