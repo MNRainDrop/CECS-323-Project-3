@@ -2,7 +2,7 @@ package model;
 
 public class Trim {
     private String name;
-    private static float cost;
+    private float cost;
     
     public String getName() {
         return name;
@@ -10,10 +10,10 @@ public class Trim {
     public void setName(String name) {
         this.name = name;
     }
-    public static float getCost() {
+    public float getCost() {
         return cost;
     }
     public void setCost(float cost) {
-        Trim.cost = cost;
+        this.cost = cost;
     }
 }
