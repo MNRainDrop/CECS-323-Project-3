@@ -5,18 +5,22 @@ import jakarta.persistence.*;
 @Entity(name="trims")
 public class Trim {
 
+    @Id
+    @Column(name = "trim_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int trimID;
+
     @Column(unique = true, length = 100, name = "name")
     private String name;
 
     @Column(name = "cost")
     private float cost;
     
-    @Id
-    @Column(name = "trim_id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int trimID;
-
-    //Foreign key to Model
+    //Foreign Key with Model
+    //Many to One
+    @ManyToOne
+    @JoinColumn(name = "model_id")
+    private Model model;
 
     public String getName() {
         return name;

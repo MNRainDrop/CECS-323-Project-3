@@ -1,6 +1,6 @@
 package model;
 
-//import java.util.*;
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="models")
@@ -17,6 +17,11 @@ public class Model
     @Column(name = "model_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int modelID;
+
+    //Parent Key of Trim
+    //One to Many
+    @OneToMany(mappedBy = "model")
+    private List<Trim> trims;
 
     public String getName() 
     {
