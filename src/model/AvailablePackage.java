@@ -1,6 +1,6 @@
 package model;
 
-import jakarta.persistence.*;;
+import jakarta.persistence.*;
 
 @Entity(name="availablepackages")
 public class AvailablePackage {

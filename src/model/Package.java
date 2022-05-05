@@ -3,6 +3,7 @@ package model;
 import java.util.*;
 import jakarta.persistence.*;
 
+@Entity(name="packages")
 public class Package 
 {
     private String name;
