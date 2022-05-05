@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity(name="models")
 public class Model {
 
-    @Column(unique = true, length = 100, name="name")
+    @Column(unique = true, length = 100, name = "name")
     private String name;
     
     @Column(unique = true, name = "year")
