@@ -4,6 +4,9 @@ import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="trims")
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"model_id", "name"})
+})
 public class Trim {
 
     //Primary Key
@@ -12,7 +15,7 @@ public class Trim {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trimID;
 
-    @Column(unique = true, length = 100, name = "name")
+    @Column(length = 100, name = "name")
     private String name;
 
     @Column(name = "cost")

@@ -4,13 +4,16 @@ import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="models")
+@Table(uniqueConstraints = {
+    @UniqueConstraint(columnNames = {"name", "year"})
+})
 public class Model 
 {
 
-    @Column(unique = true, length = 100, name = "name")
+    @Column(length = 100, name = "name")
     private String name;
     
-    @Column(unique = true, name = "year")
+    @Column(name = "year")
     private int year;
     
     //Primary Key
