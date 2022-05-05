@@ -28,17 +28,22 @@ public class Trim {
     @OneToMany(mappedBy = "trim")
     private List<Automobile> automobiles;
 
-    public String getName() {
+    public String getName()
+    {
         return name;
     }
+
     public void setName(String name) 
     {
         this.name = name;
     }
+
     public float getCost() {
         return cost;
     }
+
     public void setCost(float cost) {
         this.cost = cost;
     }
+    
 }
