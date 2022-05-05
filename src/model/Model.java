@@ -18,7 +18,7 @@ public class Model
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int modelID;
 
-    //Parent Key of Trim
+    //Parent Key of Model to Trim
     //One to Many
     @OneToMany(mappedBy = "model")
     private List<Trim> trims;

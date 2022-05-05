@@ -23,7 +23,7 @@ public class Trim {
     @JoinColumn(name = "model_id")
     private Model model;
 
-    //Parent Key of Automobile
+    //Parent Key of Trim to Automobile
     //One to Many
     @OneToMany(mappedBy = "trim")
     private List<Automobile> automobiles;
