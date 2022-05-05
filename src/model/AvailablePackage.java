@@ -1,9 +1,9 @@
 package model;
 
 public class AvailablePackage {
-    private static float cost;
+    private float cost;
 
-    public static float getCost() {
+    public float getCost() {
         return cost;
     }
 
