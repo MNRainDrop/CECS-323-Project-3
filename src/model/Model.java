@@ -27,24 +27,30 @@ public class Model
     {
         return name;
     }
+
     public int getModelID() 
     {
         return modelID;
     }
+
     public void setModelID(int modelID) 
     {
         this.modelID = modelID;
     }
+
     public void setName(String name) 
     {
         this.name = name;
     }
+
     public int getYear() 
     {
         return year;
     }
+
     public void setYear(int year) 
     {
         this.year = year;
     }
+    
 }
