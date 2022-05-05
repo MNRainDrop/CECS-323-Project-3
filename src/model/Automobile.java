@@ -1,8 +1,13 @@
 package model;
 import java.util.*;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
+@Entity(name = "automobiles")
 public class Automobile 
 {
+    @Column(unique = true, length = 100, name = "vin")
     private String vin;
 
     public String getVin() 
