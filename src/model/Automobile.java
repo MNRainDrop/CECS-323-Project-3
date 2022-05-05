@@ -31,6 +31,14 @@ public class Automobile
     @JoinColumn(name = "trim_id" )
     private Trim trim;
     
+    public Trim getTrim() {
+        return trim;
+    }
+
+    public void setTrim(Trim trim) {
+        this.trim = trim;
+    }
+
     public int getAutoID() 
     {
         return autoID;
