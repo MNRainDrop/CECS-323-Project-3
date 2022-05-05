@@ -13,6 +13,7 @@ public class Model
     @Column(unique = true, name = "year")
     private int year;
     
+    //Primary Key
     @Id
     @Column(name = "model_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -52,5 +53,5 @@ public class Model
     {
         this.year = year;
     }
-    
+
 }

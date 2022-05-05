@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Entity(name="trims")
 public class Trim {
 
+    //Primary Key
     @Id
     @Column(name = "trim_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
