@@ -8,6 +8,6 @@ public class AvailablePackage {
     }
 
     public void setCost(float cost) {
-        AvailablePackage.cost = cost;
+        this.cost = cost;
     }
 }
