@@ -8,13 +8,14 @@ public class AvailablePackage
     @Column(name="cost")
     private float cost;
 
-    @ManyToOne
     @JoinColumn(name="trim_id")
-    private Trim trimID;
-
     @ManyToOne
+    private Trim trim;
+
+    //(must use "pack" because "packages" is a keyword in Java)
     @JoinColumn(name="package_id")
-    private Package packageID;
+    @ManyToOne
+    private Package pack;
 
     @Id
     @Column(name = "available_id")

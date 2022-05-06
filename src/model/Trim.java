@@ -27,10 +27,10 @@ public class Trim {
     @JoinColumn(name = "model_id")
     private Model model;
 
-    //Association with Packages, via the a
-    //One to Manyt to AvailablePackages
+    //Association with Packages, via the AvailablePackage
+    //One to Many to AvailablePackages
     @OneToMany(mappedBy = "trim")
-    private Set<AvailablePackage> availablepackages;
+    private Set<AvailablePackage> availablePackages;
 
     public String getName()
     {
