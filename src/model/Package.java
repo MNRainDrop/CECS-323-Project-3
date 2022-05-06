@@ -21,6 +21,12 @@ public class Package
     @OneToMany(mappedBy = "pack")
     private Set<AvailablePackage> availablePackages;
 
+    //Association with Features, via the PackageFeatures
+    //One to Many to PackageFeatures
+    //(must use "pack" because "packages" is a keyword in Java)
+    @OneToMany(mappedBy = "pack")
+    private Set<PackageFeatures> packageFeatures;
+
     public int getPackageID()
     {
         return packageID;

@@ -27,6 +27,11 @@ public class Model
     @OneToMany(mappedBy = "model")
     private List<Trim> trims;
 
+    //Association with Features, via the ModelFeatures
+    //One to Many to ModelFeatures
+    @OneToMany(mappedBy = "model")
+    private Set<ModelFeatures> modelFeatures;
+
     public String getName() 
     {
         return name;

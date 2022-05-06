@@ -32,6 +32,11 @@ public class Trim {
     @OneToMany(mappedBy = "trim")
     private Set<AvailablePackage> availablePackages;
 
+    //Association with Features, via the TrimFeatures
+    //One to Many to TrimFeatures
+    @OneToMany(mappedBy = "trim")
+    private Set<TrimFeatures> trimfeatures;
+    
     public String getName()
     {
         return name;
