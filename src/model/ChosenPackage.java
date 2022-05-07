@@ -2,7 +2,7 @@ package model;
 import jakarta.persistence.*;
 
 @Entity(name="chosenpackages")
-public class ChosenPackages {
+public class ChosenPackage {
     //Foreign key with availablepackage
     //Many to One, Unidirectional?
     @ManyToOne
