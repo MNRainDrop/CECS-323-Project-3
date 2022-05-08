@@ -9,6 +9,18 @@ import jakarta.persistence.*;
 })
 public class Trim {
 
+    public Trim() {
+    }
+
+    public Trim(String name, float cost, Model model, Set<AvailablePackage> availablePackages,
+            Set<TrimFeatures> trimfeatures) {
+        this.name = name;
+        this.cost = cost;
+        this.model = model;
+        this.availablePackages = availablePackages;
+        this.trimfeatures = trimfeatures;
+    }
+
     //Primary Key
     @Id
     @Column(name = "trim_id")

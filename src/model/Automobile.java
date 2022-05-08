@@ -6,6 +6,16 @@ import jakarta.persistence.*;
 @Entity(name = "automobiles")
 public class Automobile 
 {
+    
+    public Automobile() {
+    }
+
+    public Automobile(String vin, Trim trim, Set<ChosenPackage> chosenPackages) {
+        this.vin = vin;
+        this.trim = trim;
+        this.chosenPackages = chosenPackages;
+    }
+
     @Column(unique = true, length = 100, name = "vin", nullable = false)
     private String vin;
 

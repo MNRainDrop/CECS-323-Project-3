@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 @Entity(name="modelfeatures")
 public class ModelFeatures {
 
+    public ModelFeatures() {
+    }
+
+    public ModelFeatures(Model model, Feature feature) {
+        this.model = model;
+        this.feature = feature;
+    }
+
     @Id
     @JoinColumn(name="model_id", nullable = false)
     @ManyToOne

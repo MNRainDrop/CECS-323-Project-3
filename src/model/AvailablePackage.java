@@ -6,6 +6,17 @@ import jakarta.persistence.*;
 @Entity(name="availablepackages")
 public class AvailablePackage
 {
+    
+    public AvailablePackage() {
+    }
+
+    public AvailablePackage(float cost, Trim trim, Package pack, Set<ChosenPackage> chosenPackages) {
+        this.cost = cost;
+        this.trim = trim;
+        this.pack = pack;
+        this.chosenPackages = chosenPackages;
+    }
+
     @Column(name="cost", nullable = false)
     private float cost;
 

@@ -9,6 +9,17 @@ import jakarta.persistence.*;
 })
 public class Model 
 {
+    
+    public Model() {
+    }
+
+    public Model(String name, int year, List<Trim> trims, Set<ModelFeatures> modelFeatures) {
+        this.name = name;
+        this.year = year;
+        this.trims = trims;
+        this.modelFeatures = modelFeatures;
+    }
+
     @Column(length = 100, name = "name", nullable = false)
     private String name;
     

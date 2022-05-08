@@ -6,6 +6,18 @@ import jakarta.persistence.*;
 @Entity(name = "features")
 public class Feature 
 {
+    
+    public Feature() {
+    }
+
+    public Feature(String name, Set<ModelFeatures> modelFeatures, Set<TrimFeatures> trimFeatures,
+            Set<PackageFeatures> packageFeatures) {
+        this.name = name;
+        this.modelFeatures = modelFeatures;
+        this.trimFeatures = trimFeatures;
+        this.packageFeatures = packageFeatures;
+    }
+
     @Column(unique = true, length = 100, name = "name", nullable = false)
     private String name;
 

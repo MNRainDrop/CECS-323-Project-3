@@ -4,6 +4,13 @@ import jakarta.persistence.*;
 @Entity(name="chosenpackages")
 public class ChosenPackage {
 
+    public ChosenPackage(AvailablePackage availablepackage, Automobile automobile) {
+        this.availablepackage = availablepackage;
+        this.automobile = automobile;
+    }
+
+    public ChosenPackage() {
+    }
     //Foreign key with availablepackage
     //Many to One, Bidirectional
     @Id

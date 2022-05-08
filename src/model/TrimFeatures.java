@@ -5,6 +5,14 @@ import jakarta.persistence.*;
 @Entity(name="trimfeatures")
 public class TrimFeatures {
     
+    public TrimFeatures() {
+    }
+
+    public TrimFeatures(Trim trim, Feature feature) {
+        this.trim = trim;
+        this.feature = feature;
+    }
+
     @Id
     @JoinColumn(name="trim_id", nullable = false)
     @ManyToOne
