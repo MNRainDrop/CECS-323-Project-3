@@ -3,11 +3,20 @@ import jakarta.persistence.*;
 
 @Entity(name="chosenpackages")
 public class ChosenPackage {
+
     //Foreign key with availablepackage
-    //Many to One, Unidirectional?
-    @ManyToOne
+    //Many to One, Bidirectional
+    @Id
     @JoinColumn(name = "available_id" )
+    @ManyToOne
     private AvailablePackage availablepackage;
+
+    //Foreign key with automobiles
+    //Many to One, Bidirectional
+    @Id
+    @JoinColumn(name = "auto_id" )
+    @ManyToOne
+    private Automobile automobile;
 
     public AvailablePackage getAvailablepackage() {
         return availablepackage;
@@ -16,12 +25,6 @@ public class ChosenPackage {
     public void setAvailablepackage(AvailablePackage availablepackage) {
         this.availablepackage = availablepackage;
     }
-
-    //Foreign key with automobiles
-    //Many to One, Unidirectional?
-    @ManyToOne
-    @JoinColumn(name = "auto_id" )
-    private Automobile automobile;
 
     public Automobile getAutomobile() {
         return automobile;

@@ -1,5 +1,6 @@
 package model;
 
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name="availablepackages")
@@ -21,6 +22,11 @@ public class AvailablePackage
     @Column(name = "available_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int availableID;
+
+    //Association with Automobile, via the AvailablePackage
+    //One to Many to ChosenPackage
+    @OneToMany(mappedBy = "availablepackage")
+    private Set<ChosenPackage> chosenPackages;
 
     public float getCost()
     {

@@ -1,6 +1,6 @@
 package model;
-import java.util.*;
 
+import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name = "automobiles")
@@ -30,6 +30,11 @@ public class Automobile
     @ManyToOne
     @JoinColumn(name = "trim_id" )
     private Trim trim;
+
+    //Association with AvailablePackage, via the ChosenPackage
+    //One to Many to ChosenPackage
+    @OneToMany(mappedBy = "automobile")
+    private Set<ChosenPackage> chosenPackages;
     
     public Trim getTrim() {
         return trim;
