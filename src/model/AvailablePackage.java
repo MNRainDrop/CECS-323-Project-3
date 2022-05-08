@@ -14,7 +14,6 @@ public class AvailablePackage
         this.cost = cost;
         this.trim = trim;
         this.pack = pack;
-        this.chosenPackages = chosenPackages;
     }
 
     @Column(name="cost", nullable = false)

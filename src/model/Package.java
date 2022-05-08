@@ -12,8 +12,6 @@ public class Package
 
     public Package(String name, Set<AvailablePackage> availablePackages, Set<PackageFeatures> packageFeatures) {
         this.name = name;
-        this.availablePackages = availablePackages;
-        this.packageFeatures = packageFeatures;
     }
 
     //Primary key

@@ -17,8 +17,6 @@ public class Trim {
         this.name = name;
         this.cost = cost;
         this.model = model;
-        this.availablePackages = availablePackages;
-        this.trimfeatures = trimfeatures;
     }
 
     //Primary Key
