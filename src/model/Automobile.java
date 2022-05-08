@@ -36,6 +36,19 @@ public class Automobile
         this.vin = vin;
     }
 
+    //Only Getters
+    public int getAutoID() {
+        return autoID;
+    }
+
+    public Trim getTrim() {
+        return trim;
+    }
+
+    public Set<ChosenPackage> getChosenPackages() {
+        return chosenPackages;
+    }
+
     public Set<Feature> getFeatures()
     {
         Set<Feature> temp = new HashSet<Feature>(); //not sure what I am doing :D

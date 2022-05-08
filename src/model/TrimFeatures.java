@@ -17,4 +17,11 @@ public class TrimFeatures {
 
     //Setters and Getters
     //None
+    public Trim getTrim() {
+        return trim;
+    }
+
+    public Feature getFeature() {
+        return feature;
+    }
 }

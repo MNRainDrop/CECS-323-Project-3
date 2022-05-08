@@ -19,5 +19,14 @@ public class ChosenPackage {
     private Automobile automobile;
 
     //Setters and Getters
-    //None for this one
+    //No Setters
+
+    //Only Getters
+    public AvailablePackage getAvailablepackage() {
+        return availablepackage;
+    }
+
+    public Automobile getAutomobile() {
+        return automobile;
+    }
 }

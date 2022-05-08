@@ -53,4 +53,20 @@ public class Trim {
     public void setCost(float cost) {
         this.cost = cost;
     }
+
+    //Only Getters
+    public int getTrimID() {
+        return trimID;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    public Set<AvailablePackage> getAvailablePackages() {
+        return availablePackages;
+    }
+    public Set<TrimFeatures> getTrimfeatures() {
+        return trimfeatures;
+    }    
 }

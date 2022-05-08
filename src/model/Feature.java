@@ -38,4 +38,21 @@ public class Feature
     public void setName(String name) {
         this.name = name;
     }
+
+    //Only Getters
+    public int getFeatureID() {
+        return featureID;
+    }
+
+    public Set<ModelFeatures> getModelFeatures() {
+        return modelFeatures;
+    }
+
+    public Set<TrimFeatures> getTrimFeatures() {
+        return trimFeatures;
+    }
+
+    public Set<PackageFeatures> getPackageFeatures() {
+        return packageFeatures;
+    }    
 }

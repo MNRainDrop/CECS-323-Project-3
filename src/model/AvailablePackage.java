@@ -37,4 +37,20 @@ public class AvailablePackage
         this.cost = cost;
     }
 
+    //Only Getters
+    public Trim getTrim() {
+        return trim;
+    }
+
+    public Package getPack() {
+        return pack;
+    }
+
+    public int getAvailableID() {
+        return availableID;
+    }
+
+    public Set<ChosenPackage> getChosenPackages() {
+        return chosenPackages;
+    }
 }

@@ -18,4 +18,11 @@ public class PackageFeatures {
 
     //Setters and Getters
     //None
+    public Package getPack() {
+        return pack;
+    }
+
+    public Feature getFeature() {
+        return feature;
+    }
 }

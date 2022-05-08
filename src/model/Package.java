@@ -35,4 +35,18 @@ public class Package
     public void setName(String name) {
         this.name = name;
     }
+
+    //Only Getters
+    public int getPackageID() {
+        return packageID;
+    }
+
+    public Set<AvailablePackage> getAvailablePackages() {
+        return availablePackages;
+    }
+
+    public Set<PackageFeatures> getPackageFeatures() {
+        return packageFeatures;
+    }
+
 }

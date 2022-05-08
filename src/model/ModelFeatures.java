@@ -14,7 +14,21 @@ public class ModelFeatures {
     @JoinColumn(name="feature_id")
     @ManyToOne
     private Feature feature;
+    
+    //Setters and Getters
+    //No Setters
+    //Only Getters
+    public Model getModel() {
+        return model;
+    }
+
+    public Feature getFeature() {
+        return feature;
+    }
 
     //Setters and Getters
-    //None
+    //No Setters
+    //Only Getters
+
+    
 }
