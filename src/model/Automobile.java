@@ -66,10 +66,25 @@ public class Automobile
         return autoID;
     }
 
+
+    public Set<Feature> getFeatures()
+    {
+        Set<Feature> features = new HashSet<Feature>();
+        //Some magic here... idk yet
+        return features;
+    }
+    
     public double stickerPrice()
     {
-        //double total = AvailablePackage.getCost() + Trim.getCost(); //not sure what I am doing ):
-        //return total;
-        return 0; 
+        double stickerPrice;
+        double trimCost = trim.getCost();
+        double packagesCost = 0;
+        for(ChosenPackage pack : chosenPackages)
+        {
+            packagesCost += pack.getAvailablepackage().getCost();
+        }
+        stickerPrice = trimCost + packagesCost;
+        System.out.println(trimCost + " + " + packagesCost + " = " + stickerPrice);
+        return stickerPrice;
     }
 }
