@@ -13,7 +13,7 @@ public class Model
     public Model() {
     }
 
-    public Model(String name, int year, List<Trim> trims, Set<ModelFeatures> modelFeatures) {
+    public Model(String name, int year) {
         this.name = name;
         this.year = year;
     }

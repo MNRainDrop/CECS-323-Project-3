@@ -10,7 +10,7 @@ public class AvailablePackage
     public AvailablePackage() {
     }
 
-    public AvailablePackage(float cost, Trim trim, Package pack, Set<ChosenPackage> chosenPackages) {
+    public AvailablePackage(float cost, Trim trim, Package pack) {
         this.cost = cost;
         this.trim = trim;
         this.pack = pack;

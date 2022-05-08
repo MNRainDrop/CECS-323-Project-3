@@ -10,7 +10,7 @@ public class Package
     public Package() {
     }
 
-    public Package(String name, Set<AvailablePackage> availablePackages, Set<PackageFeatures> packageFeatures) {
+    public Package(String name) {
         this.name = name;
     }
 

@@ -12,8 +12,7 @@ public class Trim {
     public Trim() {
     }
 
-    public Trim(String name, float cost, Model model, Set<AvailablePackage> availablePackages,
-            Set<TrimFeatures> trimfeatures) {
+    public Trim(String name, float cost, Model model) {
         this.name = name;
         this.cost = cost;
         this.model = model;

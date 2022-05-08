@@ -10,7 +10,7 @@ public class Automobile
     public Automobile() {
     }
 
-    public Automobile(String vin, Trim trim, Set<ChosenPackage> chosenPackages) {
+    public Automobile(String vin, Trim trim) {
         this.vin = vin;
         this.trim = trim;
     }

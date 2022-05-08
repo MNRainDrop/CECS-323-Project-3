@@ -10,8 +10,7 @@ public class Feature
     public Feature() {
     }
 
-    public Feature(String name, Set<ModelFeatures> modelFeatures, Set<TrimFeatures> trimFeatures,
-            Set<PackageFeatures> packageFeatures) {
+    public Feature(String name) {
         this.name = name;
     }
 
