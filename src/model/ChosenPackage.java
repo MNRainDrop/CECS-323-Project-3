@@ -18,15 +18,22 @@ public class ChosenPackage {
     @ManyToOne
     private Automobile automobile;
 
-    //Setters and Getters
-    //No Setters
-
-    //Only Getters
     public AvailablePackage getAvailablepackage() {
         return availablepackage;
+    }
+
+    public void setAvailablepackage(AvailablePackage availablepackage) {
+        this.availablepackage = availablepackage;
     }
 
     public Automobile getAutomobile() {
         return automobile;
     }
+
+    public void setAutomobile(Automobile automobile) {
+        this.automobile = automobile;
+    }
+
+    //Setters and Getters
+
 }

@@ -54,19 +54,32 @@ public class Trim {
         this.cost = cost;
     }
 
-    //Only Getters
-    public int getTrimID() {
-        return trimID;
-    }
-
     public Model getModel() {
         return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public Set<AvailablePackage> getAvailablePackages() {
         return availablePackages;
     }
+
+    public void setAvailablePackages(Set<AvailablePackage> availablePackages) {
+        this.availablePackages = availablePackages;
+    }
+
     public Set<TrimFeatures> getTrimfeatures() {
         return trimfeatures;
-    }    
+    }
+
+    public void setTrimfeatures(Set<TrimFeatures> trimfeatures) {
+        this.trimfeatures = trimfeatures;
+    }
+
+    //Only Getters
+    public int getTrimID() {
+        return trimID;
+    }
 }

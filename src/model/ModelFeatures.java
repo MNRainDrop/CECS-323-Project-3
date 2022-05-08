@@ -16,19 +16,20 @@ public class ModelFeatures {
     private Feature feature;
     
     //Setters and Getters
-    //No Setters
-    //Only Getters
+
     public Model getModel() {
         return model;
+    }
+
+    public void setModel(Model model) {
+        this.model = model;
+    }
+
+    public void setFeature(Feature feature) {
+        this.feature = feature;
     }
 
     public Feature getFeature() {
         return feature;
     }
-
-    //Setters and Getters
-    //No Setters
-    //Only Getters
-
-    
 }

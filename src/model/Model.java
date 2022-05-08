@@ -49,16 +49,24 @@ public class Model
         this.year = year;
     }
 
-    //Only Getters
-    public int getModelID() {
-        return modelID;
-    }
-
     public List<Trim> getTrims() {
         return trims;
     }
 
+    public void setTrims(List<Trim> trims) {
+        this.trims = trims;
+    }
+
     public Set<ModelFeatures> getModelFeatures() {
         return modelFeatures;
+    }
+
+    public void setModelFeatures(Set<ModelFeatures> modelFeatures) {
+        this.modelFeatures = modelFeatures;
+    }
+
+    //Only Getters
+    public int getModelID() {
+        return modelID;
     }
 }

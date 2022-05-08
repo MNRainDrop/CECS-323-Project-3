@@ -39,20 +39,32 @@ public class Feature
         this.name = name;
     }
 
-    //Only Getters
-    public int getFeatureID() {
-        return featureID;
-    }
-
     public Set<ModelFeatures> getModelFeatures() {
         return modelFeatures;
+    }
+
+    public void setModelFeatures(Set<ModelFeatures> modelFeatures) {
+        this.modelFeatures = modelFeatures;
     }
 
     public Set<TrimFeatures> getTrimFeatures() {
         return trimFeatures;
     }
 
+    public void setTrimFeatures(Set<TrimFeatures> trimFeatures) {
+        this.trimFeatures = trimFeatures;
+    }
+
     public Set<PackageFeatures> getPackageFeatures() {
         return packageFeatures;
-    }    
+    }
+
+    public void setPackageFeatures(Set<PackageFeatures> packageFeatures) {
+        this.packageFeatures = packageFeatures;
+    }
+
+    //Only Getters
+    public int getFeatureID() {
+        return featureID;
+    }
 }

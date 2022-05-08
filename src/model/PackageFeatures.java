@@ -17,9 +17,16 @@ public class PackageFeatures {
     private Feature feature;
 
     //Setters and Getters
-    //None
     public Package getPack() {
         return pack;
+    }
+
+    public void setPack(Package pack) {
+        this.pack = pack;
+    }
+
+    public void setFeature(Feature feature) {
+        this.feature = feature;
     }
 
     public Feature getFeature() {

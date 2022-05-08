@@ -16,9 +16,16 @@ public class TrimFeatures {
     private Feature feature;
 
     //Setters and Getters
-    //None
     public Trim getTrim() {
         return trim;
+    }
+
+    public void setTrim(Trim trim) {
+        this.trim = trim;
+    }
+
+    public void setFeature(Feature feature) {
+        this.feature = feature;
     }
 
     public Feature getFeature() {
