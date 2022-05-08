@@ -28,13 +28,13 @@ public class AvailablePackage
     @OneToMany(mappedBy = "availablepackage")
     private Set<ChosenPackage> chosenPackages;
 
-    public float getCost()
-    {
+    //Setters and Getters
+    public float getCost() {
         return cost;
     }
 
-    public void setCost(float cost)
-    {
+    public void setCost(float cost) {
         this.cost = cost;
     }
+
 }

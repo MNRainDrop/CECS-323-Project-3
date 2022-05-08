@@ -27,23 +27,12 @@ public class Package
     @OneToMany(mappedBy = "pack")
     private Set<PackageFeatures> packageFeatures;
 
-    public int getPackageID()
-    {
-        return packageID;
-    }
-
-    public void setPackageID(int packageID) 
-    {
-        this.packageID = packageID;
-    }
-
-    public String getName() 
-    {
+    //Setters and Getters
+    public String getName() {
         return name;
     }
 
-    public void setName(String name) 
-    {
+    public void setName(String name) {
         this.name = name;
     }
 }

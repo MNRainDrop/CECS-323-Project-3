@@ -30,13 +30,12 @@ public class Feature
     @OneToMany(mappedBy = "feature")
     private Set<PackageFeatures> packageFeatures;
 
-    public String getName() 
-    {
+    //Setters and Getters
+    public String getName() {
         return name;
     }
 
-    public void setName(String name) 
-    {
+    public void setName(String name) {
         this.name = name;
     }
 }

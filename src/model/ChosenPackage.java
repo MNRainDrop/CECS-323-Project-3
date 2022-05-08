@@ -18,19 +18,6 @@ public class ChosenPackage {
     @ManyToOne
     private Automobile automobile;
 
-    public AvailablePackage getAvailablepackage() {
-        return availablepackage;
-    }
-
-    public void setAvailablepackage(AvailablePackage availablepackage) {
-        this.availablepackage = availablepackage;
-    }
-
-    public Automobile getAutomobile() {
-        return automobile;
-    }
-
-    public void setAutomobile(Automobile automobile) {
-        this.automobile = automobile;
-    }
+    //Setters and Getters
+    //None for this one
 }

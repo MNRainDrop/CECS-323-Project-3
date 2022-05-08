@@ -9,16 +9,6 @@ public class Automobile
     @Column(unique = true, length = 100, name = "vin")
     private String vin;
 
-    public String getVin() 
-    {
-        return vin;
-    }
-
-    public void setVin(String vin) 
-    {
-        this.vin = vin;
-    }
-
     //Primary key 
     @Id
     @Column(name = "auto_id")
@@ -36,22 +26,14 @@ public class Automobile
     @OneToMany(mappedBy = "automobile")
     private Set<ChosenPackage> chosenPackages;
     
-    public Trim getTrim() {
-        return trim;
+
+    //Setters and Getters
+    public String getVin() {
+        return vin;
     }
 
-    public void setTrim(Trim trim) {
-        this.trim = trim;
-    }
-
-    public int getAutoID() 
-    {
-        return autoID;
-    }
-
-    public void setAutoID(int autoID) 
-    {
-        this.autoID = autoID;
+    public void setVin(String vin) {
+        this.vin = vin;
     }
 
     public Set<Feature> getFeatures()

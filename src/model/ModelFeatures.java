@@ -14,4 +14,7 @@ public class ModelFeatures {
     @JoinColumn(name="feature_id")
     @ManyToOne
     private Feature feature;
+
+    //Setters and Getters
+    //None
 }

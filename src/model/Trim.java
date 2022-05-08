@@ -36,14 +36,13 @@ public class Trim {
     //One to Many to TrimFeatures
     @OneToMany(mappedBy = "trim")
     private Set<TrimFeatures> trimfeatures;
-    
-    public String getName()
-    {
+
+    //Setters and Getters
+    public String getName() {
         return name;
     }
 
-    public void setName(String name) 
-    {
+    public void setName(String name) {
         this.name = name;
     }
 
@@ -54,5 +53,4 @@ public class Trim {
     public void setCost(float cost) {
         this.cost = cost;
     }
-
 }

@@ -15,4 +15,6 @@ public class TrimFeatures {
     @ManyToOne
     private Feature feature;
 
+    //Setters and Getters
+    //None
 }
