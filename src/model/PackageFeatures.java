@@ -7,12 +7,12 @@ public class PackageFeatures {
 
     //(must use "pack" because "packages" is a keyword in Java)
     @Id
-    @JoinColumn(name="package_id")
+    @JoinColumn(name="package_id", nullable = false)
     @ManyToOne
     private Package pack;
 
     @Id
-    @JoinColumn(name="feature_id")
+    @JoinColumn(name="feature_id", nullable = false)
     @ManyToOne
     private Feature feature;
 

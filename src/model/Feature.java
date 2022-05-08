@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity(name = "features")
 public class Feature 
 {
-    @Column(unique = true, length = 100, name = "name")
+    @Column(unique = true, length = 100, name = "name", nullable = false)
     private String name;
 
     //Primary Key

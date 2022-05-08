@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 public class ModelFeatures {
 
     @Id
-    @JoinColumn(name="model_id")
+    @JoinColumn(name="model_id", nullable = false)
     @ManyToOne
     private Model model;
 
     @Id
-    @JoinColumn(name="feature_id")
+    @JoinColumn(name="feature_id", nullable = false)
     @ManyToOne
     private Feature feature;
     

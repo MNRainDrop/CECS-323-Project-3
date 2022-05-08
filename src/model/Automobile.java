@@ -6,7 +6,7 @@ import jakarta.persistence.*;
 @Entity(name = "automobiles")
 public class Automobile 
 {
-    @Column(unique = true, length = 100, name = "vin")
+    @Column(unique = true, length = 100, name = "vin", nullable = false)
     private String vin;
 
     //Primary key 
@@ -18,7 +18,7 @@ public class Automobile
     //Foreign key with trim
     //Many to One, Unidirectional
     @ManyToOne
-    @JoinColumn(name = "trim_id" )
+    @JoinColumn(name = "trim_id", nullable = false)
     private Trim trim;
 
     //Association with AvailablePackage, via the ChosenPackage

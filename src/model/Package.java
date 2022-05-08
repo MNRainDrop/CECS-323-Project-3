@@ -12,7 +12,7 @@ public class Package
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int packageID;
 
-    @Column(length = 100, name = "name")
+    @Column(length = 100, name = "name", nullable = false)
     private String name;
 
     //Association with Trims, via the AvailablePackage

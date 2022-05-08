@@ -9,11 +9,10 @@ import jakarta.persistence.*;
 })
 public class Model 
 {
-
-    @Column(length = 100, name = "name")
+    @Column(length = 100, name = "name", nullable = false)
     private String name;
     
-    @Column(name = "year")
+    @Column(name = "year", nullable = false)
     private int year;
     
     //Primary Key

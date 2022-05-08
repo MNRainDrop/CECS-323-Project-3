@@ -7,14 +7,14 @@ public class ChosenPackage {
     //Foreign key with availablepackage
     //Many to One, Bidirectional
     @Id
-    @JoinColumn(name = "available_id" )
+    @JoinColumn(name = "available_id", nullable = false)
     @ManyToOne
     private AvailablePackage availablepackage;
 
     //Foreign key with automobiles
     //Many to One, Bidirectional
     @Id
-    @JoinColumn(name = "auto_id" )
+    @JoinColumn(name = "auto_id", nullable = false)
     @ManyToOne
     private Automobile automobile;
 

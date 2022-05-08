@@ -6,12 +6,12 @@ import jakarta.persistence.*;
 public class TrimFeatures {
     
     @Id
-    @JoinColumn(name="trim_id")
+    @JoinColumn(name="trim_id", nullable = false)
     @ManyToOne
     private Trim trim;
 
     @Id
-    @JoinColumn(name="feature_id")
+    @JoinColumn(name="feature_id", nullable = false)
     @ManyToOne
     private Feature feature;
 

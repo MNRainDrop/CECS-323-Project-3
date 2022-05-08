@@ -15,16 +15,16 @@ public class Trim {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int trimID;
 
-    @Column(length = 100, name = "name")
+    @Column(length = 100, name = "name", nullable = false)
     private String name;
 
-    @Column(name = "cost")
+    @Column(name = "cost", nullable = false)
     private float cost;
     
     //Foreign Key with Model
     //Many to One, Bidirectional
     @ManyToOne
-    @JoinColumn(name = "model_id")
+    @JoinColumn(name = "model_id", nullable = false)
     private Model model;
 
     //Association with Packages, via the AvailablePackage

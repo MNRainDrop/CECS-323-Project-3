@@ -7,6 +7,8 @@ public class App
 {
     private static void test()
     {
+        System.out.println("\n\nStart Program");
+
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
         EntityManager em = factory.createEntityManager();
         
