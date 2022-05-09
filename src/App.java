@@ -31,6 +31,7 @@ public class App
         featurelist.add(new Feature("leather seats"));
         featurelist.add(new Feature("plug-in hybrid engine"));
         featurelist.add(new Feature("power sliding doors"));
+        featurelist.add(new Feature("hands-free sliding doors"));
         featurelist.add(new Feature("Amazon FireTV"));
         featurelist.add(new Feature("rear-seat entertainment screens"));
         featurelist.add(new Feature("all-wheel drive"));
@@ -117,6 +118,43 @@ public class App
         trimlist.add(new Trim("Limited", 46000, modellist.get(2)));
         trimlist.add(new Trim("Pinnacle", 52000, modellist.get(2)));
         for(Trim trim : trimlist)
+        {
+            em.persist(trim);
+        }
+        em.getTransaction().commit();
+
+        //TrimFeatures
+        em.getTransaction().begin();
+        System.out.println("\nInserting TrimFeatures");
+
+        ArrayList<TrimFeatures> trimfeaturelist = new ArrayList<>(); 
+        
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(1), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(1), featurelist.get(3)));
+
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(3)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(5)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(4)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(6)));
+
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(4), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(4), featurelist.get(3)));
+
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(3)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(5)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(4)));
+        
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(7), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(7), featurelist.get(3)));
+
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(0)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(3)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(5)));
+        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(7)));
+
+        for(TrimFeatures trim : trimfeaturelist)
         {
             em.persist(trim);
         }
