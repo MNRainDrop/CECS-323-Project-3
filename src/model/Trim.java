@@ -41,7 +41,7 @@ public class Trim {
     @OneToMany(mappedBy = "trim")
     private Set<AvailablePackage> availablePackages;
 
-    //Many to Many with Features, bidirectional
+    //Many to Many with Features, unidirectional
     @JoinTable(
         name = "trimfeatures", 
         joinColumns = @JoinColumn(name = "trim_id"), 

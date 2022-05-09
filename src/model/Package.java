@@ -29,7 +29,7 @@ public class Package
     @OneToMany(mappedBy = "pack")
     private Set<AvailablePackage> availablePackages;
 
-    //Many to Many with Features, bidirectional
+    //Many to Many with Features, unidirectional
     @JoinTable(
         name = "packagefeatures", 
         joinColumns = @JoinColumn(name = "package_id"), 

@@ -35,7 +35,7 @@ public class Model
     @OneToMany(mappedBy = "model")
     private List<Trim> trims;
 
-    //Many to Many with Features, bidirectional
+    //Many to Many with Features, unidirectional
     @ManyToMany
     @JoinTable(
         name = "modelfeatures", 
