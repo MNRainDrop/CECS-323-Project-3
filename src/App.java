@@ -159,6 +159,24 @@ public class App
             em.persist(trim);
         }
         em.getTransaction().commit();
+
+        //Available Packages
+        //Trims
+        em.getTransaction().begin();
+        System.out.println("\nInserting AvailablePackages");
+
+        ArrayList<AvailablePackage> availablePackage = new ArrayList<>(); 
+        availablePackage.add(new AvailablePackage(3000, trimlist.get(0), packagelist.get(2)));
+        availablePackage.add(new AvailablePackage(2500, trimlist.get(1), packagelist.get(1)));
+        availablePackage.add(new AvailablePackage(2500, trimlist.get(4), packagelist.get(1)));
+        availablePackage.add(new AvailablePackage(3000, trimlist.get(6), packagelist.get(2)));
+        availablePackage.add(new AvailablePackage(2500, trimlist.get(7), packagelist.get(0)));
+        availablePackage.add(new AvailablePackage(2000, trimlist.get(7), packagelist.get(2)));
+        for(AvailablePackage packs : availablePackage)
+        {
+            em.persist(packs);
+        }
+        em.getTransaction().commit();
     }
 
     public static void main(String[] args) throws Exception 
