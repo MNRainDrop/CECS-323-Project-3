@@ -9,8 +9,69 @@ public class App
     
     public static void main(String[] args) throws Exception 
     {
-        test();
+        run();
+        //test();
+    }
 
+    private static void run()
+    {
+        Scanner in = new Scanner(System.in);
+        boolean run = true;
+        while(true)
+        {
+            System.out.println("Select an option:"
+            + "\n\t1) Instantiate Model"
+            + "\n\t2) Automobile Lookup"
+            + "\n\t3) Feature Search");
+            String temp = in.nextLine();
+            if (temp.equalsIgnoreCase("1"))
+            {
+                inserts();
+            }
+            else if (temp.equalsIgnoreCase("2"))
+            {
+                automobileLookup();
+            }
+            else if (temp.equalsIgnoreCase("3"))
+            {
+                featuresSearch();
+            }
+            else
+            {
+                System.out.println("Bad Input");
+            }
+            boolean end = false;
+            while(!end){
+                System.out.println("Run again?(Y/N)");
+                temp = in.nextLine();
+                if (temp.equalsIgnoreCase("y") || temp.equalsIgnoreCase("yes"))
+                {
+                    end = true;
+                }
+                else if (temp.equalsIgnoreCase("n") || temp.equalsIgnoreCase("no"))
+                {
+                    run = false;
+                    end = true;
+                }
+                else
+                {
+                    System.out.println("Bad Input");
+                }
+            }
+            if (!run)
+            {
+                in.close();
+                System.exit(0);
+            }
+
+            
+        }
+    }
+
+    private static void featuresSearch() {
+    }
+
+    private static void automobileLookup() {
     }
 
     private static void test()
@@ -34,7 +95,7 @@ public class App
         var auto = em.createQuery("select a from automobiles a", Automobile.class).getResultList();
         for (Automobile a : auto) 
         {
-            System.out.println("\n" + a.getVin() + " : ");
+            System.out.print("\n" + a.getVin() + " : ");
             Set<Feature> features = a.getFeatures();
             for(Feature f : features)
             {
