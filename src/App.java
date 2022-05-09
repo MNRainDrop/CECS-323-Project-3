@@ -1,11 +1,9 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.*;
 
 import jakarta.persistence.*;
 import model.*;
 import model.Package;
+
 public class App 
 {
     
