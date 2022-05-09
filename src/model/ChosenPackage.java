@@ -7,7 +7,7 @@ public class ChosenPackage {
     public ChosenPackage() {
     }
 
-    public ChosenPackage(AvailablePackage availablepackage, Automobile automobile) {
+    public ChosenPackage(Automobile automobile, AvailablePackage availablepackage) {
         this.availablepackage = availablepackage;
         this.automobile = automobile;
     }

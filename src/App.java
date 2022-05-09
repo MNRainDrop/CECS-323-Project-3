@@ -111,9 +111,11 @@ public class App
         trimlist.add(new Trim("Touring", 30000, modellist.get(0)));
         trimlist.add(new Trim("Limited", 34000, modellist.get(0)));
         trimlist.add(new Trim("Pinnacle", 42000, modellist.get(0)));
+
         trimlist.add(new Trim("Touring", 43000, modellist.get(1)));
         trimlist.add(new Trim("Limited", 48000, modellist.get(1)));
         trimlist.add(new Trim("Pinnacle", 54000, modellist.get(1)));
+        
         trimlist.add(new Trim("Touring", 41000, modellist.get(2)));
         trimlist.add(new Trim("Limited", 46000, modellist.get(2)));
         trimlist.add(new Trim("Pinnacle", 52000, modellist.get(2)));
@@ -161,7 +163,6 @@ public class App
         em.getTransaction().commit();
 
         //Available Packages
-        //Trims
         em.getTransaction().begin();
         System.out.println("\nInserting AvailablePackages");
 
@@ -175,6 +176,37 @@ public class App
         for(AvailablePackage packs : availablePackage)
         {
             em.persist(packs);
+        }
+        em.getTransaction().commit();
+
+        //Automobiles
+        em.getTransaction().begin();
+        System.out.println("\nInserting Automobiles");
+
+        ArrayList<Automobile> autolist = new ArrayList<>();
+        autolist.add(new Automobile("12345abcde", trimlist.get(1)));
+        autolist.add(new Automobile("67890abcde", trimlist.get(5)));
+        autolist.add(new Automobile("99999aaaaa", trimlist.get(8)));
+        autolist.add(new Automobile("aaaaa88888", trimlist.get(6)));
+        autolist.add(new Automobile("bbbbb77777", trimlist.get(7)));
+        for(Automobile auto : autolist)
+        {
+            em.persist(auto);
+        }
+        em.getTransaction().commit();
+
+        //ChosenPackage
+        em.getTransaction().begin();
+        System.out.println("\nInserting ChosenPackages");
+
+        ArrayList<ChosenPackage> chosenpacklist = new ArrayList<>();
+        chosenpacklist.add(new ChosenPackage(autolist.get(0), availablePackage.get(1)));
+        chosenpacklist.add(new ChosenPackage(autolist.get(3), availablePackage.get(3)));
+        chosenpacklist.add(new ChosenPackage(autolist.get(4), availablePackage.get(4)));
+        chosenpacklist.add(new ChosenPackage(autolist.get(4), availablePackage.get(5)));
+        for(ChosenPackage pack : chosenpacklist)
+        {
+            em.persist(pack);
         }
         em.getTransaction().commit();
     }
