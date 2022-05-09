@@ -35,10 +35,15 @@ public class Model
     @OneToMany(mappedBy = "model")
     private List<Trim> trims;
 
-    //Association with Features, via the ModelFeatures
-    //One to Many to ModelFeatures
-    @OneToMany(mappedBy = "model")
-    private Set<ModelFeatures> modelFeatures;
+    //Many to Many with Features, bidirectional
+    @ManyToMany
+    @JoinTable(
+        name = "modelfeatures", 
+        joinColumns = @JoinColumn(name = "model_id"), 
+        inverseJoinColumns = @JoinColumn(name = "feature_id",
+        nullable = false)
+    )
+    private Set<Feature> modelfeatures;
 
     //Setters and Getters
     public String getName() {
@@ -65,16 +70,20 @@ public class Model
         this.trims = trims;
     }
 
-    public Set<ModelFeatures> getModelFeatures() {
-        return modelFeatures;
+    public Set<Feature> getModelfeatures() {
+        return modelfeatures;
     }
 
-    public void setModelFeatures(Set<ModelFeatures> modelFeatures) {
-        this.modelFeatures = modelFeatures;
+    public void setModelfeatures(Set<Feature> modelfeatures) {
+        this.modelfeatures = modelfeatures;
     }
 
     //Only Getters
     public int getModelID() {
         return modelID;
+    }
+
+    public void addModelfeatures(Feature feature) {
+        modelfeatures.add(feature);
     }
 }

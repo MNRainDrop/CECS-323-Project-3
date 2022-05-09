@@ -29,11 +29,15 @@ public class Package
     @OneToMany(mappedBy = "pack")
     private Set<AvailablePackage> availablePackages;
 
-    //Association with Features, via the PackageFeatures
-    //One to Many to PackageFeatures
-    //(must use "pack" because "packages" is a keyword in Java)
-    @OneToMany(mappedBy = "pack")
-    private Set<PackageFeatures> packageFeatures;
+    //Many to Many with Features, bidirectional
+    @JoinTable(
+        name = "packagefeatures", 
+        joinColumns = @JoinColumn(name = "package_id"), 
+        inverseJoinColumns = @JoinColumn(name = "feature_id",
+        nullable = false)
+    )
+    @ManyToMany
+    private Set<Feature> packagefeatures;
 
     //Setters and Getters
     public String getName() {
@@ -52,16 +56,20 @@ public class Package
         this.availablePackages = availablePackages;
     }
 
-    public Set<PackageFeatures> getPackageFeatures() {
-        return packageFeatures;
+    public Set<Feature> getPackagefeatures() {
+        return packagefeatures;
     }
 
-    public void setPackageFeatures(Set<PackageFeatures> packageFeatures) {
-        this.packageFeatures = packageFeatures;
+    public void setPackagefeatures(Set<Feature> packagefeatures) {
+        this.packagefeatures = packagefeatures;
     }
 
     //Only Getters
     public int getPackageID() {
         return packageID;
+    }
+
+    public void addPackagefeatures(Feature feature) {
+        packagefeatures.add(feature);
     }
 }

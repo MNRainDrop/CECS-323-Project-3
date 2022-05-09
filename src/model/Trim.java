@@ -41,10 +41,14 @@ public class Trim {
     @OneToMany(mappedBy = "trim")
     private Set<AvailablePackage> availablePackages;
 
-    //Association with Features, via the TrimFeatures
-    //One to Many to TrimFeatures
-    @OneToMany(mappedBy = "trim")
-    private Set<TrimFeatures> trimfeatures;
+    //Many to Many with Features, bidirectional
+    @JoinTable(
+        name = "trimfeatures", 
+        joinColumns = @JoinColumn(name = "trim_id"), 
+        inverseJoinColumns = @JoinColumn(name = "feature_id")
+    )
+    @ManyToMany
+    private Set<Feature> trimfeatures;
 
     //Setters and Getters
     public String getName() {
@@ -79,16 +83,20 @@ public class Trim {
         this.availablePackages = availablePackages;
     }
 
-    public Set<TrimFeatures> getTrimfeatures() {
+    public Set<Feature> getTrimfeatures() {
         return trimfeatures;
     }
 
-    public void setTrimfeatures(Set<TrimFeatures> trimfeatures) {
+    public void setTrimfeatures(Set<Feature> trimfeatures) {
         this.trimfeatures = trimfeatures;
     }
 
     //Only Getters
     public int getTrimID() {
         return trimID;
+    }
+
+    public void addTrimfeatures(Feature feature) {
+        trimfeatures.add(feature);
     }
 }

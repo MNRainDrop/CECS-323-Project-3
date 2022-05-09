@@ -30,11 +30,16 @@ public class Automobile
     @JoinColumn(name = "trim_id", nullable = false)
     private Trim trim;
 
-    //Association with AvailablePackage, via the ChosenPackage
-    //One to Many to ChosenPackage
-    @OneToMany(mappedBy = "automobile")
-    private Set<ChosenPackage> chosenPackages;
-    
+    //Many to Many with Available Package, bidirection
+    @ManyToMany
+    @JoinTable(
+        name = "chosenpackages",
+        joinColumns = @JoinColumn(name = "auto_id"),
+        inverseJoinColumns = @JoinColumn(name = "available_id",
+        nullable = false)
+    )
+    private Set<AvailablePackage> chosenpackages;
+
 
     //Setters and Getters
     public String getVin() {
@@ -53,24 +58,33 @@ public class Automobile
         this.trim = trim;
     }
 
-    public Set<ChosenPackage> getChosenPackages() {
-        return chosenPackages;
+    public Set<AvailablePackage> getPacks() {
+        return chosenpackages;
     }
 
-    public void setChosenPackages(Set<ChosenPackage> chosenPackages) {
-        this.chosenPackages = chosenPackages;
+    public void setPacks(Set<AvailablePackage> chosenpackages) {
+        this.chosenpackages = chosenpackages;
     }
 
     //Only Getter
     public int getAutoID() {
         return autoID;
     }
+    
+    public void addChosenpackages(AvailablePackage availablePackage) {
+        chosenpackages.add(availablePackage);
+    }
 
 
     public Set<Feature> getFeatures()
     {
         Set<Feature> features = new HashSet<Feature>();
-        //Some magic here... idk yet
+        features.addAll(trim.getTrimfeatures());
+        for(AvailablePackage pack : chosenpackages)
+        {
+            features.addAll(pack.getPack().getPackagefeatures());
+        }
+        features.addAll(trim.getModel().getModelfeatures());
         return features;
     }
     
@@ -79,12 +93,13 @@ public class Automobile
         double stickerPrice;
         double trimCost = trim.getCost();
         double packagesCost = 0;
-        for(ChosenPackage pack : chosenPackages)
+
+        for (AvailablePackage pack: chosenpackages)
         {
-            packagesCost += pack.getAvailablepackage().getCost();
+            packagesCost += pack.getCost();
         }
         stickerPrice = trimCost + packagesCost;
-        System.out.println(trimCost + " + " + packagesCost + " = " + stickerPrice);
         return stickerPrice;
     }
+
 }

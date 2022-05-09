@@ -1,31 +1,75 @@
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 import jakarta.persistence.*;
 import model.*;
 import model.Package;
 public class App 
 {
+    
+    public static void main(String[] args) throws Exception 
+    {
+        test();
+
+    }
+
     private static void test()
     {
         System.out.println("\n\nStart Program");
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
-        EntityManager em = factory.createEntityManager();
-        
-        inserts(em);
+        inserts();
+        //pricetest();
+        featuretest();
 
-        System.out.println("\n\ndone");
+        System.out.println("\ndone");
         System.exit(0);
     }
 
-    //Does all the inserts from the Doc
-    private static void inserts(EntityManager em)
+    private static void featuretest() {
+        //Instantiate Entity Manager Factory and Entity Manager
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
+        EntityManager em = factory.createEntityManager();
+
+        System.out.println("Get Features Per Automobile\n");
+        var auto = em.createQuery("select a from automobiles a", Automobile.class).getResultList();
+        for (Automobile a : auto) 
+        {
+            System.out.println("\n" + a.getVin() + " : ");
+            Set<Feature> features = a.getFeatures();
+            for(Feature f : features)
+            {
+                System.out.print("" + f.getName() + ", ");
+            }
+        }
+    }
+
+    private static void pricetest()
     {
+        //Instantiate Entity Manager Factory and Entity Manager
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
+        EntityManager em = factory.createEntityManager();
+
+        System.out.println("Get Sticker Price Per Automobile\n");
+        var auto = em.createQuery("select a from automobiles a", Automobile.class).getResultList();
+        for (Automobile a : auto) 
+        {
+            System.out.println(a.getVin() + " : $" + a.stickerPrice());
+        }
+    }
+
+    //Does all the inserts from the Document
+    private static void inserts()
+    {
+        //Instantiate Entity Manager Factory and Entity Manager
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
+        EntityManager em = factory.createEntityManager();
+
+        System.out.println("\nInserting all data\n");
         //Features
         em.getTransaction().begin();
-        System.out.println("\nInserting Features");
+        System.out.println("Inserting Features");
 
         ArrayList<Feature> featurelist = new ArrayList<>(); 
         featurelist.add(new Feature("leather seats"));
@@ -39,12 +83,12 @@ public class App
         for(Feature feature : featurelist)
         {
             em.persist(feature);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
-        em.getTransaction().commit();
         
         //Packages
-        em.getTransaction().begin();
-        System.out.println("\nInserting Packages");
+        System.out.println("Inserting Packages");
 
         ArrayList<Package> packagelist = new ArrayList<>(); 
         packagelist.add(new Package("Theater Package"));
@@ -53,28 +97,20 @@ public class App
         for(Package pack : packagelist)
         {
             em.persist(pack);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
-        em.getTransaction().commit();
 
         //PackageFeatures
-        em.getTransaction().begin();
-        System.out.println("\nInserting PackageFeatures");
+        System.out.println("Inserting PackageFeatures");
+        packagelist.get(0).addPackagefeatures(featurelist.get(5));
+        packagelist.get(1).addPackagefeatures(featurelist.get(5));
+        packagelist.get(1).addPackagefeatures(featurelist.get(4));
+        packagelist.get(2).addPackagefeatures(featurelist.get(7));
 
-        ArrayList<PackageFeatures> packagefeaturelist = new ArrayList<>(); 
-        //reference the packge and features from the previous lists
-        packagefeaturelist.add(new PackageFeatures(packagelist.get(0), featurelist.get(4)));
-        packagefeaturelist.add(new PackageFeatures(packagelist.get(1), featurelist.get(4)));
-        packagefeaturelist.add(new PackageFeatures(packagelist.get(1), featurelist.get(3)));
-        packagefeaturelist.add(new PackageFeatures(packagelist.get(2), featurelist.get(6)));
-        for(PackageFeatures pack : packagefeaturelist)
-        {
-            em.persist(pack);
-        }
-        em.getTransaction().commit();
 
         //Models
-        em.getTransaction().begin();
-        System.out.println("\nInserting Models");
+        System.out.println("Inserting Models");
 
         ArrayList<Model> modellist = new ArrayList<>(); 
         modellist.add(new Model("Pacifica", 2022));
@@ -83,29 +119,21 @@ public class App
         for(Model model : modellist)
         {
             em.persist(model);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
-        em.getTransaction().commit();
 
         //ModelFeatures
-        em.getTransaction().begin();
-        System.out.println("\nInserting ModelFeatures");
+        System.out.println("Inserting ModelFeatures");
 
-        ArrayList<ModelFeatures> modelfeaturelist = new ArrayList<>(); 
-        //reference the packge and features from the previous lists
-        modelfeaturelist.add(new ModelFeatures(modellist.get(0), featurelist.get(2)));
-        modelfeaturelist.add(new ModelFeatures(modellist.get(1), featurelist.get(2)));
-        modelfeaturelist.add(new ModelFeatures(modellist.get(1), featurelist.get(1)));
-        modelfeaturelist.add(new ModelFeatures(modellist.get(2), featurelist.get(2)));
-        modelfeaturelist.add(new ModelFeatures(modellist.get(2), featurelist.get(1)));
-        for(ModelFeatures model : modelfeaturelist)
-        {
-            em.persist(model);
-        }
-        em.getTransaction().commit();
+        modellist.get(0).addModelfeatures(featurelist.get(2));
+        modellist.get(1).addModelfeatures(featurelist.get(2));
+        modellist.get(1).addModelfeatures(featurelist.get(1));
+        modellist.get(2).addModelfeatures(featurelist.get(2));
+        modellist.get(2).addModelfeatures(featurelist.get(1));
 
         //Trims
-        em.getTransaction().begin();
-        System.out.println("\nInserting Trims");
+        System.out.println("Inserting Trims");
 
         ArrayList<Trim> trimlist = new ArrayList<>(); 
         trimlist.add(new Trim("Touring", 30000, modellist.get(0)));
@@ -122,49 +150,34 @@ public class App
         for(Trim trim : trimlist)
         {
             em.persist(trim);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
-        em.getTransaction().commit();
 
         //TrimFeatures
-        em.getTransaction().begin();
-        System.out.println("\nInserting TrimFeatures");
-
-        ArrayList<TrimFeatures> trimfeaturelist = new ArrayList<>(); 
-        
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(1), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(1), featurelist.get(3)));
-
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(3)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(5)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(4)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(2), featurelist.get(6)));
-
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(4), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(4), featurelist.get(3)));
-
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(3)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(5)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(5), featurelist.get(4)));
-        
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(7), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(7), featurelist.get(3)));
-
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(0)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(3)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(5)));
-        trimfeaturelist.add(new TrimFeatures(trimlist.get(8), featurelist.get(7)));
-
-        for(TrimFeatures trim : trimfeaturelist)
-        {
-            em.persist(trim);
-        }
-        em.getTransaction().commit();
+        System.out.println("Inserting TrimFeatures");
+        trimlist.get(1).addTrimfeatures(featurelist.get(0));
+        trimlist.get(1).addTrimfeatures(featurelist.get(3));
+        trimlist.get(2).addTrimfeatures(featurelist.get(0));
+        trimlist.get(2).addTrimfeatures(featurelist.get(3));
+        trimlist.get(2).addTrimfeatures(featurelist.get(5));
+        trimlist.get(2).addTrimfeatures(featurelist.get(4));
+        trimlist.get(2).addTrimfeatures(featurelist.get(6));
+        trimlist.get(4).addTrimfeatures(featurelist.get(0));
+        trimlist.get(4).addTrimfeatures(featurelist.get(3));
+        trimlist.get(5).addTrimfeatures(featurelist.get(0));
+        trimlist.get(5).addTrimfeatures(featurelist.get(3));
+        trimlist.get(5).addTrimfeatures(featurelist.get(5));
+        trimlist.get(5).addTrimfeatures(featurelist.get(4));
+        trimlist.get(7).addTrimfeatures(featurelist.get(0));
+        trimlist.get(7).addTrimfeatures(featurelist.get(3));
+        trimlist.get(8).addTrimfeatures(featurelist.get(0));
+        trimlist.get(8).addTrimfeatures(featurelist.get(3));
+        trimlist.get(8).addTrimfeatures(featurelist.get(5));
+        trimlist.get(8).addTrimfeatures(featurelist.get(7));
 
         //Available Packages
-        em.getTransaction().begin();
-        System.out.println("\nInserting AvailablePackages");
+        System.out.println("Inserting AvailablePackages");
 
         ArrayList<AvailablePackage> availablePackage = new ArrayList<>(); 
         availablePackage.add(new AvailablePackage(3000, trimlist.get(0), packagelist.get(2)));
@@ -176,12 +189,12 @@ public class App
         for(AvailablePackage packs : availablePackage)
         {
             em.persist(packs);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
-        em.getTransaction().commit();
 
         //Automobiles
-        em.getTransaction().begin();
-        System.out.println("\nInserting Automobiles");
+        System.out.println("Inserting Automobiles");
 
         ArrayList<Automobile> autolist = new ArrayList<>();
         autolist.add(new Automobile("12345abcde", trimlist.get(1)));
@@ -192,27 +205,19 @@ public class App
         for(Automobile auto : autolist)
         {
             em.persist(auto);
+            em.getTransaction().commit();
+            em.getTransaction().begin();
         }
+
+        //ChosenPackages
+        System.out.println("Inserting ChosenPackages");
+        autolist.get(0).addChosenpackages(availablePackage.get(1));
+        autolist.get(3).addChosenpackages(availablePackage.get(3));
+        autolist.get(4).addChosenpackages(availablePackage.get(4));
+        autolist.get(4).addChosenpackages(availablePackage.get(5));
         em.getTransaction().commit();
 
-        //ChosenPackage
-        em.getTransaction().begin();
-        System.out.println("\nInserting ChosenPackages");
-
-        ArrayList<ChosenPackage> chosenpacklist = new ArrayList<>();
-        chosenpacklist.add(new ChosenPackage(autolist.get(0), availablePackage.get(1)));
-        chosenpacklist.add(new ChosenPackage(autolist.get(3), availablePackage.get(3)));
-        chosenpacklist.add(new ChosenPackage(autolist.get(4), availablePackage.get(4)));
-        chosenpacklist.add(new ChosenPackage(autolist.get(4), availablePackage.get(5)));
-        for(ChosenPackage pack : chosenpacklist)
-        {
-            em.persist(pack);
-        }
-        em.getTransaction().commit();
+        System.out.println("\nInserts Finished\n");
     }
 
-    public static void main(String[] args) throws Exception 
-    {
-        test();
-    }
 }

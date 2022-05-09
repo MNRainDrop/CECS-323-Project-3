@@ -24,19 +24,21 @@ public class AvailablePackage
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int availableID;
 
+    //Junction between Package and Trim
+    //One to Many to Trim
     @JoinColumn(name="trim_id", nullable = false)
     @ManyToOne
     private Trim trim;
 
+    //Junction between Package and Trim
     //(must use "pack" because "packages" is a keyword in Java)
     @JoinColumn(name="package_id", nullable = false)
     @ManyToOne
     private Package pack;
 
-    //Association with Automobile, via the AvailablePackage
-    //One to Many to ChosenPackage
-    @OneToMany(mappedBy = "availablepackage")
-    private Set<ChosenPackage> chosenPackages;
+    //Many to Many with Automobile, bidrectional
+    @ManyToMany(mappedBy = "chosenpackages")
+    private Set<Automobile> automobiles;
 
 
     //Setters and Getters
@@ -64,12 +66,12 @@ public class AvailablePackage
         this.pack = pack;
     }
 
-    public Set<ChosenPackage> getChosenPackages() {
-        return chosenPackages;
+    public Set<Automobile> getAutomobiles() {
+        return automobiles;
     }
 
-    public void setChosenPackages(Set<ChosenPackage> chosenPackages) {
-        this.chosenPackages = chosenPackages;
+    public void setAutomobiles(Set<Automobile> automobiles) {
+        this.automobiles = automobiles;
     }
 
     //Only Getter

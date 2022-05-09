@@ -23,20 +23,17 @@ public class Feature
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int featureID;
 
-    //Association with Features, via the ModelFeatures
-    //One to Many to ModelFeatures
-    @OneToMany(mappedBy = "feature")
-    private Set<ModelFeatures> modelFeatures;
-    
-    //Association with Features, via the TrimFeatures
-    //One to Many to TrimFeatures
-    @OneToMany(mappedBy = "feature")
-    private Set<TrimFeatures> trimFeatures;
+    //Many to Many with Models, bidirectional
+    @ManyToMany(mappedBy = "modelfeatures")
+    private Set<Model> modelfeatures;
 
-    //Association with Features, via the PackageFeatures
-    //One to Many to PackageFeatures
-    @OneToMany(mappedBy = "feature")
-    private Set<PackageFeatures> packageFeatures;
+    //Many to Many with Trims, bidirectional
+    @ManyToMany(mappedBy = "trimfeatures")
+    private Set<Trim> trimfeatures;
+
+    //Many to Many with package, bidirectional
+    @ManyToMany(mappedBy = "packagefeatures")
+    private Set<Package> packagefeatures;
 
     //Setters and Getters
     public String getName() {
@@ -47,28 +44,28 @@ public class Feature
         this.name = name;
     }
 
-    public Set<ModelFeatures> getModelFeatures() {
-        return modelFeatures;
+    public Set<Model> getModelfeatures() {
+        return modelfeatures;
     }
 
-    public void setModelFeatures(Set<ModelFeatures> modelFeatures) {
-        this.modelFeatures = modelFeatures;
+    public void setModelfeatures(Set<Model> modelfeatures) {
+        this.modelfeatures = modelfeatures;
     }
 
-    public Set<TrimFeatures> getTrimFeatures() {
-        return trimFeatures;
+    public Set<Trim> getTrimfeatures() {
+        return trimfeatures;
     }
 
-    public void setTrimFeatures(Set<TrimFeatures> trimFeatures) {
-        this.trimFeatures = trimFeatures;
+    public void setTrimfeatures(Set<Trim> trimfeatures) {
+        this.trimfeatures = trimfeatures;
     }
 
-    public Set<PackageFeatures> getPackageFeatures() {
-        return packageFeatures;
+    public Set<Package> getPackagefeatures() {
+        return packagefeatures;
     }
 
-    public void setPackageFeatures(Set<PackageFeatures> packageFeatures) {
-        this.packageFeatures = packageFeatures;
+    public void setPackagefeatures(Set<Package> packagefeatures) {
+        this.packagefeatures = packagefeatures;
     }
 
     //Only Getters
