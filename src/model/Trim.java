@@ -18,6 +18,11 @@ public class Trim {
         this.model = model;
     }
 
+    @Override
+    public String toString() {
+        return name + " (ID " + trimID + ") $" + cost + ", " + model;
+    }
+
     //Primary Key
     @Id
     @Column(name = "trim_id")

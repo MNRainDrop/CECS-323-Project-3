@@ -1,10 +1,9 @@
 package model;
 
-import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name = "features")
-public class Feature 
+public class Feature implements Comparable<Feature>
 {
     
     public Feature() {
@@ -35,5 +34,11 @@ public class Feature
     //Only Getters
     public int getFeatureID() {
         return featureID;
+    }
+
+    @Override
+    public int compareTo(Feature f)
+    {
+        return this.name.compareTo(f.name);
     }
 }

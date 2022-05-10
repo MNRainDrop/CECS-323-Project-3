@@ -18,6 +18,11 @@ public class Model
         this.year = year;
     }
 
+    @Override
+    public String toString() {
+        return year + " " + name + " (ID " + modelID + ")";
+    }
+
     @Column(length = 100, name = "name", nullable = false)
     private String name;
     

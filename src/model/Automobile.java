@@ -4,7 +4,7 @@ import java.util.*;
 import jakarta.persistence.*;
 
 @Entity(name = "automobiles")
-public class Automobile 
+public class Automobile implements Comparable<Automobile>
 {
     
     public Automobile() {
@@ -13,6 +13,17 @@ public class Automobile
     public Automobile(String vin, Trim trim) {
         this.vin = vin;
         this.trim = trim;
+    }
+
+    @Override
+    public String toString() {
+        return vin + " (ID " + autoID + "), " + trim;
+    }
+
+    @Override
+    public int compareTo(Automobile a)
+    {
+        return this.vin.compareTo(a.vin);
     }
 
     @Column(unique = true, length = 100, name = "vin", nullable = false)
@@ -76,7 +87,7 @@ public class Automobile
     }
 
 
-    public Set<Feature> getFeatures()
+    public ArrayList<Feature> getFeatures()
     {
         Set<Feature> features = new HashSet<Feature>();
         features.addAll(trim.getTrimfeatures());
@@ -85,7 +96,8 @@ public class Automobile
             features.addAll(pack.getPack().getPackagefeatures());
         }
         features.addAll(trim.getModel().getModelfeatures());
-        return features;
+        ArrayList<Feature> f = new ArrayList<>(features);
+        return f;
     }
     
     public double stickerPrice()

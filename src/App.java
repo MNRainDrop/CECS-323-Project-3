@@ -17,24 +17,27 @@ public class App
     {
         Scanner in = new Scanner(System.in);
         boolean run = true;
+        
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
+        EntityManager em = factory.createEntityManager();
         while(true)
         {
-            System.out.println("Select an option:"
+            System.out.println("\nSelect an option:"
             + "\n\t1) Instantiate Model"
             + "\n\t2) Automobile Lookup"
             + "\n\t3) Feature Search");
             String temp = in.nextLine();
             if (temp.equalsIgnoreCase("1"))
             {
-                inserts();
+                inserts(em);
             }
             else if (temp.equalsIgnoreCase("2"))
             {
-                automobileLookup();
+                automobileLookup(em, in);
             }
             else if (temp.equalsIgnoreCase("3"))
             {
-                featuresSearch();
+                featuresSearch(em, in);
             }
             else
             {
@@ -42,7 +45,7 @@ public class App
             }
             boolean end = false;
             while(!end){
-                System.out.println("Run again?(Y/N)");
+                System.out.println("\nRun again?(Y/N)");
                 temp = in.nextLine();
                 if (temp.equalsIgnoreCase("y") || temp.equalsIgnoreCase("yes"))
                 {
@@ -68,18 +71,70 @@ public class App
         }
     }
 
-    private static void featuresSearch() {
+    private static void featuresSearch(EntityManager em, Scanner in) {
+        System.out.println("\nEnter Feature Name: ");
+        String featureName = in.nextLine();
+
+        var foundAutos1 = em.createQuery("SELECT distinct a " +
+        "FROM automobiles a " +
+        "LEFT OUTER JOIN a.trim t " +
+        "LEFT OUTER JOIN t.trimfeatures tf " +
+        "LEFT OUTER JOIN t.model m " +
+        "LEFT OUTER JOIN m.modelfeatures mf " +
+        "LEFT OUTER JOIN a.chosenpackages cp " +
+        "LEFT OUTER JOIN cp.pack p " +
+        "LEFT OUTER JOIN p.packagefeatures pf " +
+        "WHERE tf.name = ?1 or mf.name = ?1 or pf.name = ?1" , Automobile.class);
+        foundAutos1.setParameter(1, featureName);
+        try {
+            System.out.println("Automobiles with feature '" + featureName +"'");
+            List<Automobile> requested = foundAutos1.getResultList();
+            Collections.sort(requested);
+            for (Automobile a : requested)
+            {
+                System.out.println("\t" + a.getVin());
+            }
+        }
+        catch (NoResultException ex) {
+            System.out.println("Automobile with feature '" + featureName + "' not found.");
+        }
     }
 
-    private static void automobileLookup() {
+    private static void automobileLookup(EntityManager em, Scanner in) {
+        System.out.println("\nEnter Automobile VIN: ");
+        String vin = in.nextLine();
+        
+        var foundAuto = em.createQuery("SELECT a FROM automobiles a WHERE "
+            + "a.vin = ?1", Automobile.class);
+        foundAuto.setParameter(1, vin);
+        try {
+            Automobile requested = foundAuto.getSingleResult();
+            System.out.println(
+            "Your requested Automobile: \n" + 
+            requested.getTrim().getModel().getYear() + " " + requested.getTrim().getModel().getName() + " " + requested.getTrim().getName() + "\n" +
+            "$" + requested.stickerPrice() + "\n" +
+            "Features:");
+            ArrayList<Feature> features = requested.getFeatures();
+            Collections.sort(features);
+            for(Feature f : features)
+            {
+                System.out.println("\t" + f.getName());
+            }
+        }
+        catch (NoResultException ex) {
+            System.out.println("Automobile with vin '" + vin + "' not found.");
+        }
     }
 
+    //Test function
     private static void test()
     {
         System.out.println("\n\nStart Program");
+        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
+        EntityManager em = factory.createEntityManager();
 
-        inserts();
-        //pricetest();
+        inserts(em);
+        pricetest();
         featuretest();
 
         System.out.println("\ndone");
@@ -96,7 +151,7 @@ public class App
         for (Automobile a : auto) 
         {
             System.out.print("\n" + a.getVin() + " : ");
-            Set<Feature> features = a.getFeatures();
+            ArrayList<Feature> features = a.getFeatures();
             for(Feature f : features)
             {
                 System.out.print("" + f.getName() + ", ");
@@ -119,11 +174,8 @@ public class App
     }
 
     //Does all the inserts from the Document
-    private static void inserts()
+    private static void inserts(EntityManager em)
     {
-        //Instantiate Entity Manager Factory and Entity Manager
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("automobilesDB");
-        EntityManager em = factory.createEntityManager();
 
         System.out.println("\nInserting all data\n");
         //Features
